@@ -7,6 +7,8 @@ import { Component, OnInit } from '@angular/core';
 })
 export class ListComponent implements OnInit {
 
+  todos = [{ text: 'asdf', isChecked: true }];
+
   constructor() { }
 
   ngOnInit() {
