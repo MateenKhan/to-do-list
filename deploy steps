@@ -1,0 +1,12 @@
+
+read the below steps and commands very carefully........!!!!!!!!
+================================================================================================================
+1. replace id as "io.ionic.starter" to something else in config.xml file
+
+ ionic cordova build --release android
+ app-release-unsigned.apk
+ keytool -genkey -v -keystore my-keystore1.keystore -alias my-keystore1 -keyalg RSA -keysize 2048 -validity 10000
+    pwd: to-do-list
+jarsigner -verbose -sigalg SHA1withRSA -digestalg SHA1 -keystore my-keystore1.keystore platforms/android/app/build/outputs/apk/release/app-release-unsigned.apk my-keystore1
+zipalign -v 4 platforms/android/app/build/outputs/apk/release/app-release-unsigned.apk platforms/android/app/build/outputs/apk/release/to-do-list.apk
+================================================================================================================
