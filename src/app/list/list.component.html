@@ -1,7 +1,7 @@
 <ion-header>
   <ion-toolbar>
     <ion-title>
-      Simplyfy tasks
+      Simplyfy tasks {{swipeDirection}}
     </ion-title>
   </ion-toolbar>
 </ion-header>
@@ -10,36 +10,46 @@
   <ion-grid>
 
     <ion-row>
-      <ion-col size="8">
-        <ion-select class="ion-text-wrap">
+      <ion-col size="4">
+        <ion-select [(ngModel)]="taskType" (ionChange)="udpateTasksToDisplay()">
           <ion-select-option value="todo" selected>Todo</ion-select-option>
           <ion-select-option value="completed">Completed</ion-select-option>
         </ion-select>
       </ion-col>
-      <ion-col size="4">
-        <ion-button (click)="newItem()">
-          Add
-        </ion-button>
-      </ion-col>
     </ion-row>
 
-    <ion-row>
+    <ion-row *ngIf="taskType === 'todo'">
       <ion-col size="12">
-        <ion-item *ngFor="let todo of todos">
-          <ion-input [(ngModel)]="todo.text"></ion-input>
-          <ion-checkbox slot="start" [(ngModel)]="todo.isChecked"></ion-checkbox>
+        <ion-item>
+          <ion-input [(ngModel)]="newTask" (keyup.enter)="udpateTodo()"></ion-input>
         </ion-item>
       </ion-col>
     </ion-row>
 
 
-    <ion-card (swipe)="swipeEvent($event)">
-        <ion-item *ngFor="let todo of todos">
-          {{todo.text}}
+    <!-- <ion-card (swipe)="swipeEvent($event)">
+      <ion-item *ngFor="let todo of todos">
+        {{todo}}
+      </ion-item>
+    </ion-card> -->
+
+    <ion-item-sliding *ngFor="let task of tasksToDisplay">
+        <ion-item-options side="start">
+          <ion-item-option color="primary" expandable (click)="moveToComplete(task)">
+            Complete
+          </ion-item-option>
+        </ion-item-options>
+    
+        <ion-item>
+          <ion-label>{{task}}</ion-label>
         </ion-item>
-      </ion-card>
-
-
+    
+        <ion-item-options side="end">
+          <ion-item-option color="primary" expandable (click)="moveToComplete(task)">
+            Complete
+          </ion-item-option>
+        </ion-item-options>
+      </ion-item-sliding>
 
   </ion-grid>
 
