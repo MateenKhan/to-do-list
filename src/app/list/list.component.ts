@@ -8,11 +8,9 @@ import 'hammerjs';
 })
 export class ListComponent implements OnInit {
 
-  public swipe = 0;
-  uncompletedTasks = ['call Mr.x', 'get money from Mr.y'];
+  uncompletedTasks = [{ index: 0, value: 'call Mr.x' }, { index: 1, value: 'get money from Mr.y' }];
   completedTasks = [];
   newTask: string;
-  swipeDirection: string;
   taskType = 'todo';
   tasksToDisplay = [];
   constructor() { }
@@ -21,40 +19,18 @@ export class ListComponent implements OnInit {
     this.tasksToDisplay = this.uncompletedTasks;
   }
 
-  newItem() {
-
-  }
-
-  // swipeEvent(e: any) {
-  //   this.swipe++;
-  //   switch (e.direction) {
-  //     case 2:
-  //       this.swipeDirection = 'Right to Left';
-  //       break;
-  //     case 4:
-  //       this.swipeDirection = 'Left to Right';
-  //       break;
-  //     default:
-  //         this.swipeDirection = 'Left to Right';
-  //   }
-
-  //   console.log(e);
-
-  // }
-
   udpateTodo() {
-    this.uncompletedTasks.push(this.newTask);
+    this.uncompletedTasks.push({ index: this.uncompletedTasks.length, value: this.newTask });
     this.newTask = '';
   }
 
 
-  moveToComplete(task: string) {
-    this.completedTasks.push(task);
+  moveToComplete(index: number, task: string) {
+    this.completedTasks.push({ index: this.completedTasks.length, value: task });
+    this.uncompletedTasks.splice(index, 1);
+    // this.completedTasks.push(task);
     for (let i = 0; i < this.uncompletedTasks.length; i++) {
-      if (this.uncompletedTasks[i] === task) {
-        delete this.uncompletedTasks[i];
-        return;
-      }
+      this.uncompletedTasks[i].index = i;
     }
   }
 
