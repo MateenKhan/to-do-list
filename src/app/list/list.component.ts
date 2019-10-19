@@ -1,10 +1,12 @@
 import { Component, OnInit } from '@angular/core';
 import 'hammerjs';
+import { Keyboard } from '@ionic-native/keyboard/ngx';
 
 @Component({
   selector: 'app-list',
   templateUrl: './list.component.html',
-  styleUrls: ['./list.component.css']
+  styleUrls: ['./list.component.css'],
+  providers: [Keyboard]
 })
 export class ListComponent implements OnInit {
 
@@ -13,22 +15,33 @@ export class ListComponent implements OnInit {
   newTask: string;
   taskType = 'todo';
   tasksToDisplay = [];
-  constructor() { }
+
+  constructor(private keyboard: Keyboard) { }
+
 
   ngOnInit() {
     this.tasksToDisplay = this.uncompletedTasks;
   }
 
+  showKeyboard() { this.keyboard.show(); }
+
+  hideKeyboard() { this.keyboard.hide(); }
+
   udpateTodo() {
-    this.uncompletedTasks.push({ index: this.uncompletedTasks.length, value: this.newTask });
-    this.newTask = '';
+    console.log(this.keyboard);
+    if (this.newTask) {
+      this.uncompletedTasks.push({ index: this.uncompletedTasks.length, value: this.newTask });
+      this.newTask = '';
+      let closebutton : HTMLElement = document.getElementById('closeKeyboard') as HTMLElement;
+      console.log(closebutton);
+      closebutton.click();
+    }
   }
 
 
   moveToComplete(index: number, task: string) {
     this.completedTasks.push({ index: this.completedTasks.length, value: task });
     this.uncompletedTasks.splice(index, 1);
-    // this.completedTasks.push(task);
     for (let i = 0; i < this.uncompletedTasks.length; i++) {
       this.uncompletedTasks[i].index = i;
     }

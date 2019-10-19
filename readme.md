@@ -1,4 +1,6 @@
+donot add empty lines
 key pad should go after adding a task
+remove unused code
 completed label is not completely visible in phone
 if text is more it is not visible on the task list
 add delete task only from completed list
