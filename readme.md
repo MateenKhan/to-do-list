@@ -1,4 +1,3 @@
-fix the empty line issue after moving a task to completed list
 key pad should go after adding a task
 completed label is not completely visible in phone
 if text is more it is not visible on the task list
@@ -36,3 +35,4 @@ add calendar functionality.
 users should be able to repeat tasks like
     if a user completed a task to bring milk he should be able to repeat it
     task can be repeated daily,weekly, monthly, etc.
+user should be able to share directly via app like google drive( this should be available for paid users)
