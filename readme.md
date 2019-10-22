@@ -1,6 +1,6 @@
+update naming conventions
 key pad should go after adding a task
 completed label is not completely visible in phone
-if text is more it is not visible on the task list
 add search task functionality
 add pagination, pagination number should be taken from user or give default value
 udpate the primary task drop down, should not ask in a separate pop up

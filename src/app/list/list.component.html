@@ -36,7 +36,9 @@
         </ion-item-options>
 
         <ion-item>
-          <ion-label>{{task.value}}</ion-label>
+          <!-- <ion-label>{{task.value}}</ion-label> -->
+          <!-- <ion-input [(ngModel)]="task.value"  ></ion-input> -->
+          <ion-textarea id="taskInput" [(ngModel)]="task.value"  (click)="increaseHeight($event)" (focusout)="decreaseHeight($event)"></ion-textarea>
         </ion-item>
 
         <ion-item-options side="end">
@@ -67,10 +69,6 @@
       </ion-item-sliding>
     </div>
   </ion-grid>
-
-
-
-
 
 
 </ion-content>

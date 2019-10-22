@@ -5,7 +5,7 @@ import { Keyboard } from '@ionic-native/keyboard/ngx';
 @Component({
   selector: 'app-list',
   templateUrl: './list.component.html',
-  styleUrls: ['./list.component.css'],
+  styleUrls: ['./list.component.scss'],
   providers: [Keyboard]
 })
 export class ListComponent implements OnInit {
@@ -85,5 +85,13 @@ export class ListComponent implements OnInit {
     } else {
       this.tasksToDisplay = this.uncompletedTasks;
     }
+  }
+
+  increaseHeight(event: any) {
+    event.srcElement.style.minHeight = (event.srcElement.scrollHeight + 16) + 'px';
+  }
+
+  decreaseHeight(event: any) {
+    event.srcElement.style.minHeight = 'auto';
   }
 }
