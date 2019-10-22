@@ -78,15 +78,6 @@ export class ListComponent implements OnInit {
   }
 
 
-  udpateTasksToDisplay(seletedTaskType: string) {
-    this.taskType = seletedTaskType;
-    if (this.taskType === 'completed') {
-      this.tasksToDisplay = this.completedTasks;
-    } else {
-      this.tasksToDisplay = this.uncompletedTasks;
-    }
-  }
-
   increaseHeight(event: any) {
     event.srcElement.style.minHeight = (event.srcElement.scrollHeight + 16) + 'px';
   }
