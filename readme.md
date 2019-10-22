@@ -9,7 +9,8 @@ add dragging tasks functionality.
 add sorting functionality, eg: sort by date, sort by priority, etc. 
 Add all the input fields in sorting and searching functionality.
 Add reminders based on date and priority color.
-write test cases
+write test cases 
+use back button to return to to-do list from completed one rather than going back selecting upper options
 
 
 
