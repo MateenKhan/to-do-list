@@ -1,8 +1,6 @@
 key pad should go after adding a task
-remove unused code
 completed label is not completely visible in phone
 if text is more it is not visible on the task list
-add delete task only from completed list
 add search task functionality
 add pagination, pagination number should be taken from user or give default value
 udpate the primary task drop down, should not ask in a separate pop up
@@ -13,6 +11,10 @@ Add all the input fields in sorting and searching functionality.
 Add reminders based on date and priority color.
 write test cases
 
+
+
+detailed list:
+==========================================================
 add new type of task called detailed task
     detailed task should have the following
         1. task title
