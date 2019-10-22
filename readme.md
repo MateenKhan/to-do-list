@@ -1,4 +1,3 @@
-donot add empty lines
 key pad should go after adding a task
 remove unused code
 completed label is not completely visible in phone
@@ -12,7 +11,7 @@ add dragging tasks functionality.
 add sorting functionality, eg: sort by date, sort by priority, etc. 
 Add all the input fields in sorting and searching functionality.
 Add reminders based on date and priority color.
-
+write test cases
 
 add new type of task called detailed task
     detailed task should have the following
