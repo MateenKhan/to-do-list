@@ -1,7 +1,7 @@
 <ion-header>
   <ion-toolbar>
     <ion-title>
-      Simplyfy tasks 
+      Simplyfy tasks
     </ion-title>
   </ion-toolbar>
 </ion-header>
@@ -12,7 +12,7 @@
     <ion-button id='closeKeyboard' (click)="hideKeyboard()">hideKeyboard</ion-button>
     <ion-row>
       <ion-col size="4">
-        <ion-select [(ngModel)]="taskType" (ionChange)="udpateTasksToDisplay()">
+        <ion-select [(ngModel)]="taskType" (ionChange)="udpateTasksToDisplay(taskType)">
           <ion-select-option value="todo" selected>Todo</ion-select-option>
           <ion-select-option value="completed">Completed</ion-select-option>
         </ion-select>
@@ -27,24 +27,45 @@
       </ion-col>
     </ion-row>
 
-    <ion-item-sliding *ngFor="let task of tasksToDisplay">
-      <ion-item-options side="start">
-        <ion-item-option color="primary" expandable (click)="moveToComplete(task.index, task.value)">
-          Complete
-        </ion-item-option>
-      </ion-item-options>
+    <div *ngIf="taskType === 'todo'">
+      <ion-item-sliding *ngFor="let task of uncompletedTasks">
+        <ion-item-options side="start">
+          <ion-item-option color="success" expandable (click)="moveToComplete(task.index, task.value)">
+            Complete
+          </ion-item-option>
+        </ion-item-options>
 
-      <ion-item>
-        <ion-label>{{task.value}}</ion-label>
-      </ion-item>
+        <ion-item>
+          <ion-label>{{task.value}}</ion-label>
+        </ion-item>
 
-      <ion-item-options side="end">
-        <ion-item-option color="primary" expandable (click)="moveToComplete(task.index, task.value)">
-          Complete
-        </ion-item-option>
-      </ion-item-options>
-    </ion-item-sliding>
+        <ion-item-options side="end">
+          <ion-item-option color="danger" expandable (click)="deleteUncompletedTask(task.index)">
+            Delete
+          </ion-item-option>
+        </ion-item-options>
+      </ion-item-sliding>
+    </div>
 
+    <div *ngIf="taskType === 'completed'">
+      <ion-item-sliding *ngFor="let task of completedTasks">
+        <ion-item-options side="start">
+          <ion-item-option color="secondary" expandable (click)="moveToUnComplete(task.index, task.value)">
+            Un Complete
+          </ion-item-option>
+        </ion-item-options>
+
+        <ion-item>
+          <ion-label>{{task.value}}</ion-label>
+        </ion-item>
+
+        <ion-item-options side="end">
+          <ion-item-option color="danger" expandable (click)="deleteCompletedTask(task.index)">
+            Delete
+          </ion-item-option>
+        </ion-item-options>
+      </ion-item-sliding>
+    </div>
   </ion-grid>
 
 

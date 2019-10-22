@@ -32,7 +32,7 @@ export class ListComponent implements OnInit {
     if (this.newTask) {
       this.uncompletedTasks.push({ index: this.uncompletedTasks.length, value: this.newTask });
       this.newTask = '';
-      let closebutton : HTMLElement = document.getElementById('closeKeyboard') as HTMLElement;
+      let closebutton: HTMLElement = document.getElementById('closeKeyboard') as HTMLElement;
       console.log(closebutton);
       closebutton.click();
     }
@@ -42,13 +42,44 @@ export class ListComponent implements OnInit {
   moveToComplete(index: number, task: string) {
     this.completedTasks.push({ index: this.completedTasks.length, value: task });
     this.uncompletedTasks.splice(index, 1);
+    this.updateLists();
+  }
+
+  moveToUnComplete(index: number, task: string) {
+    this.uncompletedTasks.push({ index: this.completedTasks.length, value: task });
+    this.completedTasks.splice(index, 1);
+    this.updateLists();
+  }
+
+  deleteUncompletedTask(index: number) {
+    this.uncompletedTasks.splice(index, 1);
+    this.updateUncompletedList();
+  }
+
+  deleteCompletedTask(index: number) {
+    this.completedTasks.splice(index, 1);
+    this.updateCompletedList();
+  }
+
+  updateLists() {
+    this.updateUncompletedList();
+    this.updateCompletedList();
+  }
+
+  updateCompletedList() {
+    for (let i = 0; i < this.completedTasks.length; i++) {
+      this.completedTasks[i].index = i;
+    }
+  }
+  updateUncompletedList() {
     for (let i = 0; i < this.uncompletedTasks.length; i++) {
       this.uncompletedTasks[i].index = i;
     }
   }
 
 
-  udpateTasksToDisplay() {
+  udpateTasksToDisplay(seletedTaskType: string) {
+    this.taskType = seletedTaskType;
     if (this.taskType === 'completed') {
       this.tasksToDisplay = this.completedTasks;
     } else {
